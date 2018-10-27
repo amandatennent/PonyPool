@@ -1,0 +1,54 @@
+doctype html
+html
+	head
+		title= `${title} | ${h.siteName}`
+		link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css' integrity='sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb' crossorigin='anonymous')
+		script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous")
+		script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous")
+		script(src="/javascripts/scripts.js")
+		link(rel='stylesheet', href='/dist/style.css')
+		link(rel='shortcut icon' type='image/png' href='/images/icons/doughnut.png')
+		meta(name='viewport' content='width=device-width, initial-scale=1')
+	body
+		block header
+			header
+				nav.navbar
+					img.logo(src='/images/pics/Logo.png' alt='Pony Pool Logo')
+					button.navbar-toggler.custom-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+						span.navbar-toggler-icon
+					div.collapse.navbar-collapse#navbarSupportedContent
+						ul.navbar-nav.mr-auto
+							a.nav-link(href='/')
+								li.nav-item Home
+							each item in h.menu
+								a.nav-link(href=item.slug class=(currentPath.startsWith(item.slug) ? 'active-menu' : ''))
+									li.nav-item #{item.title}
+							if user
+								a.nav-link(href='/account')
+									li.nav-item Account
+								a.nav-link(href='/logout')
+									li.nav-item Logout
+							else
+								a.nav-link(href='/login')
+									li.nav-item Login
+		block messages
+			if locals.flashes
+				.inner
+					.flash-messages
+						- const categories = Object.keys(locals.flashes)
+							each category in categories
+								each message in flashes[category]
+									.flash(class=`flash--${category}`)
+										p.flash__text!= message
+										button.flash__remove(onClick="this.parentElement.remove()") &times;
+										script(type="text/javascript") window.setTimeout("closeFlashMessage();", 5000);
+		.content
+			block content
+				p User ID = #{user._id}
+
+		block footer
+			if user
+				footer
+					div.left Position: 1/15
+					div.right $10.59

@@ -1,0 +1,13 @@
+extends layout
+
+include mixins/_loginForm
+include mixins/_registerForm
+include mixins/_forgot
+
+block content
+	.login-card
+		+loginForm()
+	.login-card
+		+forgotForm()
+	.login-card
+		+registerForm()
