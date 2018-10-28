@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const promsify = require('es6-promisify');
+const fetch = require('node-fetch');
+const helpers = require('../helpers');
 
 exports.loginForm = (req, res) => {
 	res.render('login', { title: 'Login'});
-}
+};
 
 exports.registerForm = (req, res) => {
 	res.render('register', { title: 'Register'});
-}
+};
 
 exports.validateRegister = (req, res, next) => {
 	req.sanitizeBody('name');
@@ -38,6 +40,19 @@ exports.register = async (req, res, next) => {
 	const user = new User({ email: req.body.email, name: req.body.name });
 	const register = promsify(User.register, User);
 	await register(user, req.body.password);
+
+	// Add user to API
+	// FIXME: Unhandled promise rejection
+	var body = { name: user.name, paid: false, userId: user._id };
+	fetch(helpers.apiUrl + '/Users/PostUser', {
+		method: 'POST',
+		body:    JSON.stringify(body),
+		headers: {
+			'Content-Type': 'application/json',
+			'accept': 'application/json'
+		}
+	});
+
 	next();
 };
 
@@ -51,7 +66,8 @@ exports.updateAccount = async (req, res) => {
 		email: req.body.email
 	};
 
-	const user = await User.findByIdAndUpdate(
+	// May need this in front const user =
+	await User.findByIdAndUpdate(
 		{  _id: req.user._id },
 		{ $set: updates },
 		{  new: true, runValidators: true, context: 'query' }

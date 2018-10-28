@@ -18,8 +18,11 @@ exports.staticMap = ([lng, lat]) => `https://maps.googleapis.com/maps/api/static
 exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 
 // Some details about the site
-exports.siteName = `Pony Pool`;
+exports.siteName = 'Pony Pool';
+
+// API URL
+exports.apiUrl = 'http://localhost:5000/api';
 
 exports.menu = [
-  { slug: '/ladder', title: 'Ladder', },
+	{ slug: '/ladder', title: 'Ladder', },
 ];
