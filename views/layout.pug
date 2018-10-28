@@ -21,10 +21,10 @@ html
 						ul.navbar-nav.mr-auto
 							a.nav-link(href='/')
 								li.nav-item Home
-							each item in h.menu
-								a.nav-link(href=item.slug class=(currentPath.startsWith(item.slug) ? 'active-menu' : ''))
-									li.nav-item #{item.title}
 							if user
+								each item in h.menu
+									a.nav-link(href=item.slug class=(currentPath.startsWith(item.slug) ? 'active-menu' : ''))
+										li.nav-item #{item.title}
 								a.nav-link(href='/account')
 									li.nav-item Account
 								a.nav-link(href='/logout')
