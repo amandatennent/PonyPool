@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
-const mail = require('../handlers/mail')
+const mail = require('../handlers/mail');
 
 exports.login = passport.authenticate('local', {
 	failureRedirect: '/login',
@@ -25,9 +25,9 @@ exports.isLoggedIn = (req, res, next) => {
 		return;
 	}
 
-	req.flash('error', 'Oops, you must be logged in to do that')
+	req.flash('error', 'Oops, you must be logged in to do that');
 	res.redirect('/login');
-}
+};
 
 exports.forgot = async(req, res) => {
 	// Check if the user exists
@@ -49,7 +49,7 @@ exports.forgot = async(req, res) => {
 		resetURL: resetURL,
 		filename: 'password-reset'
 	});
-	req.flash('success', `You have been emailed a password reset link.`);
+	req.flash('success', 'You have been emailed a password reset link.');
 
 	res.redirect('/login');
 };
@@ -65,7 +65,7 @@ exports.reset = async (req, res) => {
 		return res.redirect('/login');
 	}
 
-	res.render('reset', { title: 'Reset your password' })
+	res.render('reset', { title: 'Reset your password' });
 };
 
 exports.confirmedPasswords = (req, res, next) => {
@@ -95,6 +95,6 @@ exports.update = async (req, res) => {
 	user.resetPasswordExpires = undefined;
 	const updatedUser = await user.save();
 	await req.login(updatedUser);
-	req.flash('success', 'Your password has been reset.')
+	req.flash('success', 'Your password has been reset.');
 	res.redirect('/');
 };

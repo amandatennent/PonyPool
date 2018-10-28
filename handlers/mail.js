@@ -17,7 +17,7 @@ exports.send = async (options) => {
 	const html = generateHTML(options.filename, options);
 	const text = htmlToText.fromString(html);
 	const mailOptions = {
-		from: `Amanda <info@ponypool.fun>`,
+		from: 'Amanda <info@ponypool.fun>',
 		to: options.user.email,
 		subject: options.subject,
 		html: html,

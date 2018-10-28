@@ -1,5 +1,3 @@
-
-
 html
 {
 	font-family: "Roboto";
@@ -83,6 +81,12 @@ footer > div:nth-child(2)
 
 
 /* Login Page */
+.login-card {
+	background-color: white;
+	margin: 20px 15px 10px;
+	padding: 10px 30px 20px;
+}
+
 .login-card input, .login-card label {
 	display: block;
 	width: 100%;
@@ -98,22 +102,16 @@ footer > div:nth-child(2)
 	margin-top: 40px;
 }
 
-.login-card {
-	background-color: white;
-	margin: 20px 15px 10px;
-	padding: 10px 30px 20px;
-}
 
 /* Content */
 .card {
 	width: 95%;
-	height: 47px;
-	line-height: 43px;
 	background: white;
 	border: 1px solid #7EBCD6;
 	border-radius: 3px;
 	z-index: 0;
 	color: #383838;
+	margin: 10px auto 0;
 }
 
 .card a {
@@ -121,16 +119,18 @@ footer > div:nth-child(2)
 }
 
 .title-card {
+	padding-top: 10px;
+	padding-bottom: 10px;
 	text-align: center;
-	font-size: 18px;
-	margin: 20px auto 0;
+	vertical-align: middle;
+	font-size: 1.2em;
 }
 
 .content-card {
 	margin: 5px auto 0;
 	display: flex;
 	flex-direction: row;
-	font-size: 14px;
+	font-size: 1em;
 }
 
 .content-card > .number {
@@ -151,6 +151,29 @@ footer > div:nth-child(2)
 	width: 45px;
 	padding-right: 10px;
 }
+
+.card-runner {
+	height: 47px;
+}
+
+/* Ladder Table */
+table {
+	margin: 10px;
+}
+
+th {
+	font-weight: normal;
+}
+
+table, th, td {
+	border: 1px solid #AAAAAA;
+	padding: 0 10px 0;
+}
+
+td:nth-child(3){
+	text-align: right;
+}
+
 
 
 /* Flash stuff, needs to be updated */

@@ -45,10 +45,11 @@ html
 										script(type="text/javascript") window.setTimeout("closeFlashMessage();", 5000);
 		.content
 			block content
-				p User ID = #{user._id}
+				if user
+					p User ID = #{user._id}
 
 		block footer
 			if user
 				footer
-					div.left Position: 1/15
-					div.right $10.59
+					div.left Position: #{user.place} / #{user.participants}
+					div.right #{user.winnings}

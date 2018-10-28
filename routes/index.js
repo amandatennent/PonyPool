@@ -2,13 +2,12 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
+const appController = require('../controllers/appController');
 
 // This is how you hide a page from a non-logged in userController
 // router.get('/add', authController.isLoggedIn, storeController.addStore);
 
-router.get('/', (req, res) => {
-	res.render('layout', { title: 'Pony Pool'});
-});
+router.get('/', appController.updateUserStandings, appController.displayHomePage);
 
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
@@ -27,6 +26,6 @@ router.post('/account/forgot', authController.forgot);
 router.get('/account/reset/:token', authController.reset);
 router.post('/account/reset/:token', authController.confirmedPasswords, authController.update);
 
-router.get('/ladder');
+router.get('/ladder', authController.isLoggedIn, appController.updateUserStandings, appController.displayLadder);
 
 module.exports = router;
