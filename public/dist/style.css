@@ -112,6 +112,8 @@ footer > div:nth-child(2)
 	z-index: 0;
 	color: #383838;
 	margin: 10px auto 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .card a {
@@ -119,8 +121,6 @@ footer > div:nth-child(2)
 }
 
 .title-card {
-	padding-top: 10px;
-	padding-bottom: 10px;
 	text-align: center;
 	vertical-align: middle;
 	font-size: 1.2em;
@@ -143,17 +143,13 @@ footer > div:nth-child(2)
 	padding-left: 10px;
 	padding-right: 10px;
 	white-space: nowrap;
-  	overflow: hidden;
+	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
 .content-card > .time {
-	width: 45px;
 	padding-right: 10px;
-}
-
-.card-runner {
-	height: 47px;
+	text-align: right;
 }
 
 /* Ladder Table */

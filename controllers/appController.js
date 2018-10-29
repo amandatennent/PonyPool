@@ -2,7 +2,35 @@ const fetchJson = require('fetch-json');
 const helpers = require('../helpers');
 
 exports.displayHomePage = (req, res) => {
-	res.render('layout', { title: 'Pony Pool'});
+	// FIXME: Unhandled promise rejection
+	var meetingName = '';
+
+	function handleMeetingName(data) {
+		var json = JSON.parse(data);
+		meetingName = toTitleCase(json.MeetingName) + ' Races';
+	}
+
+	function handleRaces(data) {
+		var json = JSON.parse(data);
+		res.render('meeting', { title: 'Meeting', meeting_name: meetingName, data: json });
+	}
+
+	fetchJson.get(helpers.apiUrl + '/Meetings/GetFeaturedMeeting')
+		.then(handleMeetingName)
+		.catch(console.error);
+
+	fetchJson.get(helpers.apiUrl + '/Races')
+		.then(handleRaces)
+		.catch(console.error);
+
+	function toTitleCase(str) {
+		return str.replace(
+			/\w\S*/g,
+			function(txt) {
+				return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+			}
+		);
+	}
 };
 
 exports.displayLadder = async (req, res) => {

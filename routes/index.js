@@ -3,11 +3,13 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const appController = require('../controllers/appController');
+const raceController = require('../controllers/raceController');
 
 // This is how you hide a page from a non-logged in userController
 // router.get('/add', authController.isLoggedIn, storeController.addStore);
 
-router.get('/', appController.updateUserStandings, appController.displayHomePage);
+router.get('/', authController.isLoggedIn, appController.updateUserStandings, appController.displayHomePage);
+router.get('/race/:racenumber', authController.isLoggedIn, raceController.displayRacePage);
 
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
