@@ -12,7 +12,7 @@ exports.displayHomePage = (req, res) => {
 
 	function handleRaces(data) {
 		var json = JSON.parse(data);
-		res.render('meeting', { title: 'Meeting', meeting_name: meetingName, data: json });
+		res.render('meeting', { title: meetingName, meeting_name: meetingName, data: json });
 	}
 
 	fetchJson.get(helpers.apiUrl + '/Meetings/GetFeaturedMeeting')

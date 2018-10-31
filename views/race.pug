@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	div.card.title-card
+		div.number !{data.RaceNumber}
+		div.name !{data.RaceName}
+		div.time !{data.TimeToJump} min
+	each runner in data.Runners
+		if runner.RunnerID == selection
+			div.card.content-card.selected(id=runner.RunnerID, onclick="makeSelection('" + user.id + "', '" + runner.RunnerID + "')")
+				div.number !{runner.Number}
+				div.name !{runner.Name}
+				if runner.RunnerStatus == 'Open'
+					div.time !{runner.ProjectedWin}
+				else
+					div.time Scratched
+		else
+			div.card.content-card(id=runner.RunnerID, onclick="makeSelection('" + user.id + "', '" + runner.RunnerID + "')")
+				div.number !{runner.Number}
+				div.name !{runner.Name}
+				if runner.RunnerStatus == 'Open'
+					div.time !{runner.ProjectedWin}
+				else
+					div.time Scratched

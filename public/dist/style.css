@@ -124,6 +124,16 @@ footer > div:nth-child(2)
 	text-align: center;
 	vertical-align: middle;
 	font-size: 1.2em;
+	display: flex;
+	flex-direction: row;
+}
+
+.card.selected {
+	background-color: #A1DFFD;
+}
+
+.title-card > .time {
+	padding-right: 10px;
 }
 
 .content-card {
@@ -133,18 +143,24 @@ footer > div:nth-child(2)
 	font-size: 1em;
 }
 
-.content-card > .number {
+.card > .center {
+	justify-content: center;
+	width: 100%;
+}
+
+.card > .number {
 	width: 30px;
 	padding-left: 10px;
 }
 
-.content-card  > .name {
+.card  > .name {
 	flex: 0px;
 	padding-left: 10px;
 	padding-right: 10px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-align: left;
 }
 
 .content-card > .time {
@@ -173,6 +189,22 @@ td:nth-child(3){
 
 
 /* Flash stuff, needs to be updated */
+#custom_flash {
+	position: absolute;
+    width: 100%;
+	top: 68px;
+	display: none;
+}
+
+#custom_flash > p {
+	width: 90%;
+}
+
+#custom_flash button.flash__remove {
+    width: 10%;
+    text-align: right;
+}
+
 .flash {
 	background: white;
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
@@ -184,7 +216,8 @@ td:nth-child(3){
 	display: -ms-flexbox;
 	display: flex;
 	animation: slideIn forwards .1s ease-in-out 2;
-	animation-timing-function: cubic-bezier(0.01, 1.68, 0.58, 1); }
+	animation-timing-function: cubic-bezier(0.01, 1.68, 0.58, 1);
+}
 	.flash + .flash {
 	  animation-delay: 0.55s; }
 	  .flash + .flash + .flash {
@@ -194,7 +227,10 @@ td:nth-child(3){
 		  flex: 1; }
 	.flash__remove {
 	  background: none;
-	  border: 0; }
+	  border: 0;
+	  padding-left: 10px;
+	  padding-right: 10px;
+	}
 	  .flash__remove:hover {
 		color: #FFC40E; }
 	.flash:after {
