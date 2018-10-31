@@ -1,7 +1,8 @@
 extends layout
 
 block content
-	div.card.title-card !{meeting_name}
+	div.card.title-card
+		div.center !{meeting_name}
 	each race in data
 		a(href=`/race/${race.RaceID}`)
 			div.card.content-card

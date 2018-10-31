@@ -11,6 +11,9 @@ html
 		link(rel='shortcut icon' type='image/png' href='/images/icons/doughnut.png')
 		meta(name='viewport' content='width=device-width, initial-scale=1')
 	body
+		div#custom_flash.flash(onclick="this.style.display='none'")
+			p#message Message goes here
+			button.flash__remove x
 		block header
 			header
 				nav.navbar
@@ -42,7 +45,7 @@ html
 									.flash(class=`flash--${category}`)
 										p.flash__text!= message
 										button.flash__remove(onClick="this.parentElement.remove()") &times;
-										script(type="text/javascript") window.setTimeout("closeFlashMessage();", 5000);
+										script(type="text/javascript") window.setTimeout("closeFlashMessage()", 5000);
 		.content
 			block content
 
