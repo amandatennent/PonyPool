@@ -10,15 +10,15 @@ block content
 			div.card.content-card.selected(id=runner.RunnerID, onclick="makeSelection('" + user.id + "', '" + runner.RunnerID + "')")
 				div.number !{runner.Number}
 				div.name !{runner.Name}
-				if runner.RunnerStatus == 'Open'
-					div.time !{runner.ProjectedWin}
-				else
+				if runner.RunnerStatus == 'Scratched'
 					div.time Scratched
+				else
+					div.time !{runner.ProjectedWin}
 		else
 			div.card.content-card(id=runner.RunnerID, onclick="makeSelection('" + user.id + "', '" + runner.RunnerID + "')")
 				div.number !{runner.Number}
 				div.name !{runner.Name}
-				if runner.RunnerStatus == 'Open'
-					div.time !{runner.ProjectedWin}
-				else
+				if runner.RunnerStatus == 'Scratched'
 					div.time Scratched
+				else
+					div.time !{runner.ProjectedWin}
