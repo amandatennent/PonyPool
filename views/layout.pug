@@ -50,7 +50,7 @@ html
 			block content
 
 		block footer
-			if user
+			if user.place && user.participants && user.winnings
 				footer
 					div.left Position: #{user.place} / #{user.participants}
 					div.right #{user.winnings}

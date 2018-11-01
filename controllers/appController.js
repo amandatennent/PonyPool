@@ -6,13 +6,20 @@ exports.displayHomePage = (req, res) => {
 	var meetingName = '';
 
 	function handleMeetingName(data) {
-		var json = JSON.parse(data);
-		meetingName = toTitleCase(json.MeetingName) + ' Races';
+		if (!(data.status == 204 && data.statusText == 'No Content')) {
+			var json = JSON.parse(data);
+			meetingName = toTitleCase(json.MeetingName) + ' Races';
+		}
 	}
 
 	function handleRaces(data) {
-		var json = JSON.parse(data);
-		res.render('meeting', { title: meetingName, meeting_name: meetingName, data: json });
+		if (data.status == 204 && data.statusText == 'No Content') {
+			res.render('layout', {title: 'No Meeting Selected'});
+		}
+		else{
+			var json = JSON.parse(data);
+			res.render('meeting', { title: meetingName, meeting_name: meetingName, data: json });
+		}
 	}
 
 	fetchJson.get(helpers.apiUrl + '/Meetings/GetFeaturedMeeting')
@@ -57,9 +64,11 @@ exports.updateUserStandings = async (req, res, next) => {
 
 	// FIXME: Unhandled promise rejection
 	function handleData(data) {
-		var json = JSON.parse(data);
-		req.user.place = json.place;
-		req.user.participants = json.participants;
-		req.user.winnings = json.winnings;
+		if (!(data.status == 204 && data.statusText == 'No Content')) {
+			var json = JSON.parse(data);
+			req.user.place = json.place;
+			req.user.participants = json.participants;
+			req.user.winnings = json.winnings;
+		}
 	}
 };
