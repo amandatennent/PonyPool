@@ -16,7 +16,7 @@ exports.displayHomePage = (req, res) => {
 		if (data.status == 204 && data.statusText == 'No Content') {
 			res.render('layout', {title: 'No Meeting Selected'});
 		}
-		else{
+		else {
 			var json = JSON.parse(data);
 			res.render('meeting', { title: meetingName, meeting_name: meetingName, data: json });
 		}
@@ -26,7 +26,7 @@ exports.displayHomePage = (req, res) => {
 		.then(handleMeetingName)
 		.catch(console.error);
 
-	fetchJson.get(helpers.apiUrl + '/Races')
+	fetchJson.get(helpers.apiUrl + '/Races/GetRaces')
 		.then(handleRaces)
 		.catch(console.error);
 

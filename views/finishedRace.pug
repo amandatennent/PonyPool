@@ -1,0 +1,34 @@
+extends layout
+
+block content
+	div.card.title-card
+		div.number !{data.RaceNumber}
+		div.name !{data.RaceName}
+		div.time !{data.RaceStatus}
+	div.card.content-card-results
+		each runner in data.First
+			div
+				div.flex
+					div.number 1st
+					div.name !{runner.Number}: !{runner.Name}
+					div !{runner.WinDividend}
+				div
+					div.right !{runner.PlaceDividend}
+		each runner in data.Second
+			div.flex
+				div.number 2nd
+				div.name !{runner.Number}: !{runner.Name}
+				div !{runner.PlaceDividend}
+		each runner in data.Third
+			div.flex
+				div.number 3rd
+				div.name !{runner.Number}: !{runner.Name}
+				div !{runner.PlaceDividend}
+	if selectionData
+		div.card
+			div.user-results
+				div.left Your Selection:
+				div.right !{selectionData.runner}
+			div.user-results
+				div.left Winnings:
+				div.right !{selectionData.winnings}
