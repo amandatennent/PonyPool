@@ -3,13 +3,13 @@ extends layout
 block content
 	div.card.title-card Ladder
 	div.card
-		table
+		table.ladder
 			tr
 				th #
 				th Punter
 				th Winnings
 			each element in json
 				tr
-					td(width="1px") !{element.Place}
+					td !{element.Place}
 					td !{element.Name}
-					td(width="1px") !{element.Winnings}
+					td.right !{element.Winnings}

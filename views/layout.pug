@@ -17,7 +17,8 @@ html
 		block header
 			header
 				nav.navbar
-					img.logo(src='/images/pics/Logo.png' alt='Pony Pool Logo')
+					a(href='/')
+						img.logo(src='/images/pics/Logo.png' alt='Pony Pool Logo')
 					button.navbar-toggler.custom-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
 						span.navbar-toggler-icon
 					div.collapse.navbar-collapse#navbarSupportedContent
@@ -50,7 +51,8 @@ html
 			block content
 
 		block footer
-			if user.place && user.participants && user.winnings
-				footer
-					div.left Position: #{user.place} / #{user.participants}
-					div.right #{user.winnings}
+			if user
+				if user.place && user.participants && user.winnings
+					footer
+						div.left Position: #{user.place} / #{user.participants}
+						div.right #{user.winnings}

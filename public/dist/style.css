@@ -126,6 +126,7 @@ footer > div:nth-child(2)
 	font-size: 1.2em;
 	display: flex;
 	flex-direction: row;
+	padding: 10px;
 }
 
 .card.selected {
@@ -141,20 +142,20 @@ footer > div:nth-child(2)
 	display: flex;
 	flex-direction: row;
 	font-size: 1em;
+	padding: 10px;
 }
 
-.card > .center {
+.card .center {
 	justify-content: center;
 	width: 100%;
 }
 
-.card > .number {
-	width: 30px;
-	padding-left: 10px;
+.card .number {
+	/* padding-left: 10px; */
 }
 
-.card  > .name {
-	flex: 0px;
+.card .name {
+	flex-grow: 1;
 	padding-left: 10px;
 	padding-right: 10px;
 	white-space: nowrap;
@@ -163,8 +164,7 @@ footer > div:nth-child(2)
 	text-align: left;
 }
 
-.content-card > .time {
-	padding-right: 10px;
+.card .time {
 	text-align: right;
 }
 
@@ -177,16 +177,27 @@ th {
 	font-weight: normal;
 }
 
-table, th, td {
+table.ladder, table.ladder th, table.ladder td {
 	border: 1px solid #AAAAAA;
 	padding: 0 10px 0;
 }
 
-td:nth-child(3){
-	text-align: right;
+table.ladder th:first-child {
+	width: 1px;
 }
 
+table.ladder th:last-child {
+	width: 1px;
+}
 
+.left
+{
+	text-align: left;
+}
+
+.right{
+	text-align: right;
+}
 
 /* Flash stuff, needs to be updated */
 #custom_flash {
@@ -253,3 +264,40 @@ td:nth-child(3){
 	  background: linear-gradient(35deg, #f1e767 0%, #feb645 100%); }
 	.flash p {
 	  margin: 0; }
+
+.content-card-results > div {
+	border-bottom: 1px solid #AAAAAA;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.content-card-results > div:last-child {
+	border-bottom: none;
+}
+
+.content-card-results .number {
+	padding-left: 0px;
+	width: 4ch;
+}
+
+.user-results {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.user-results .left {
+	width: 15ch;
+}
+
+.user-results .right {
+	flex-basis: 70%;
+}
+
+.flex {
+	display: flex;
+}
