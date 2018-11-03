@@ -1,0 +1,8 @@
+mixin raceNavigation(previousRace, nextRace)
+	div.navigation-buttons
+		div.left
+			if previousRace
+				a.btn(href=`/race/${previousRace}`) Previous Race
+		div.right
+			if nextRace
+				a.btn(href=`/race/${nextRace}` role="button") Next Race

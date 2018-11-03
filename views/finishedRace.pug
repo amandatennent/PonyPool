@@ -1,5 +1,7 @@
 extends layout
 
+include mixins/_raceNavigation
+
 block content
 	div.card.title-card
 		div.number !{data.RaceNumber}
@@ -32,3 +34,4 @@ block content
 			div.user-results
 				div.left Winnings:
 				div.right !{selectionData.winnings}
+	+raceNavigation(data.PreviousRace, data.NextRace)
