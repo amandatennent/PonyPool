@@ -31,6 +31,7 @@ exports.displayRacePage = async(req, res) => {
 		await fetchJson.get(helpers.apiUrl + '/Races/GetResults/' + req.params.racenumber)
 			.then(handleRaces)
 			.catch(console.error);
+
 		res.render('finishedRace', { title: json.RaceName, selectionData: selectionData, data: json });
 	}
 	else {

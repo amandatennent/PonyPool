@@ -1,5 +1,7 @@
 extends layout
 
+include mixins/_raceNavigation
+
 block content
 	div.card.title-card
 		div.number !{data.RaceNumber}
@@ -22,3 +24,4 @@ block content
 					div.time Scratched
 				else
 					div.time !{runner.ProjectedWin}
+	+raceNavigation(data.PreviousRace, data.NextRace)

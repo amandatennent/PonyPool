@@ -9,7 +9,7 @@ body {
 	color: #383838;
 }
 
-input[type="submit"] {
+input[type="submit"], .btn {
 	color: white;
 	background: #03A9F4
 }
@@ -296,6 +296,15 @@ table.ladder th:last-child {
 
 .user-results .right {
 	flex-basis: 70%;
+}
+
+.navigation-buttons {
+	padding: 10px;
+	display: flex;
+}
+
+.navigation-buttons > div {
+	flex-basis: 50%;
 }
 
 .flex {
