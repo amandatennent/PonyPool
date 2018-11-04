@@ -22,7 +22,7 @@ router.post('/register',
 
 router.get('/logout', authController.logout);
 
-router.get('/account', authController.isLoggedIn, userController.account);
+router.get('/account', authController.isLoggedIn, appController.updateUserStandings, userController.account);
 router.post('/account', userController.updateAccount);
 router.post('/account/forgot', authController.forgot);
 router.get('/account/reset/:token', authController.reset);
