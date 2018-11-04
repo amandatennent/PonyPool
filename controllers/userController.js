@@ -3,6 +3,7 @@ const User = mongoose.model('User');
 const promsify = require('es6-promisify');
 const fetch = require('node-fetch');
 const helpers = require('../helpers');
+const fetchJson = require('fetch-json');
 
 exports.loginForm = (req, res) => {
 	res.render('login', { title: 'Login'});
@@ -57,7 +58,19 @@ exports.register = async (req, res, next) => {
 };
 
 exports.account = (req, res) => {
-	res.render('account', {title: 'Edit Your Account'});
+	function handleRaces(data) {
+		if (data.status == 204 && data.statusText == 'No Content') {
+			res.render('account', {title: 'Your Account'});
+		}
+		else {
+			var json = JSON.parse(data);
+			res.render('account', {title: 'Your Account', data: json});
+		}
+	}
+
+	fetchJson.get(helpers.apiUrl + '/Selections/GetUsersSelections/' + req.user.id)
+		.then(handleRaces)
+		.catch(console.error);
 };
 
 exports.updateAccount = async (req, res) => {
