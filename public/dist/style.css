@@ -119,7 +119,7 @@ footer > div:nth-child(2)
 	padding-bottom: 10px;
 }
 
-.card p {
+.card p, .card small {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 0;

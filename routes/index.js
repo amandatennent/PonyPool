@@ -10,6 +10,7 @@ const raceController = require('../controllers/raceController');
 
 router.get('/', authController.isLoggedIn, appController.updateUserStandings, appController.displayHomePage);
 router.get('/race/:racenumber', authController.isLoggedIn, appController.updateUserStandings, raceController.displayRacePage);
+router.get('/race/:raceid/:runnerid', authController.isLoggedIn, appController.updateUserStandings, raceController.selectRunner);
 
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);

@@ -18,7 +18,7 @@ exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 exports.siteName = 'Pony Pool';
 
 // API URL
-exports.apiUrl = 'http://localhost:5000/api';
+exports.apiUrl = 'https://ponypoolapi20181105054929.azurewebsites.net/api';
 
 exports.menu = [
 	{ slug: '/ladder', title: 'Ladder', },

@@ -13,7 +13,7 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 function makeSelection(userID, runnerID) {
 	showMessage('info', 'Saving selection...');
 	var request = new XMLHttpRequest();
-	request.open('GET', 'http://localhost:5000/api/Selections/MakeSelection/' + userID + '/' + runnerID, true);
+	request.open('GET', 'https://ponypoolapi20181105054929.azurewebsites.net/api/Selections/MakeSelection/' + userID + '/' + runnerID, true);
 	request.onload = function () {
 		var data = JSON.parse(this.response);
 
@@ -27,10 +27,10 @@ function makeSelection(userID, runnerID) {
 
 			showMessage('success', 'Selection was successful');
 		}
-		else
+		else {
 			showMessage('error', 'Selection was not successful');
+		}
 	};
-
 	request.send();
 }
 
