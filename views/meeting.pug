@@ -4,8 +4,9 @@ block content
 	div.card.title-card
 		div.center !{meeting_name}
 	each race in data
+		- var closed = (race.RaceStatus != 'Normal' ? 'closed' : '');
 		a(href=`/race/${race.RaceID}`)
-			div.card.content-card
+			div.card.content-card(class=closed)
 				div.number !{race.RaceNumber}
 				div.name !{race.RaceName}
 				div.time !{race.RaceStartTime}

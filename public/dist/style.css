@@ -319,3 +319,7 @@ table.ladder th:last-child {
 .flex {
 	display: flex;
 }
+
+.closed {
+	background-color: #AAAAAA;
+}
