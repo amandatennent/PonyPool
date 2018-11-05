@@ -38,3 +38,31 @@ exports.displayRacePage = async(req, res) => {
 		res.render('race', { title: json.RaceName, selection: selection, data: json });
 	}
 };
+
+exports.selectRunner = async (req, res) => {
+	// res.send ('User = ' + req.user.id + ', Race = ' + req.params.raceid + ', Runner = ' + req.params.runnerid);
+
+	function handleSelection(data) {
+		data = JSON.parse(data);
+		try {
+			if (data.UpdateStatus == true) {
+				// Redirect back to race page with success message
+				req.flash('success', 'Selection was successful');
+				res.redirect('/race/' + req.params.raceid);
+			}
+			else {
+				//Redirect back to race page with failure message
+				req.flash('error', 'Selection was not successful');
+				res.redirect('/race/' + req.params.raceid);
+			}
+		}
+		catch(e) {
+			req.flash('error', 'Selection was not successful');
+			res.redirect('/race/' + req.params.raceid);
+		}
+	}
+
+	await fetchJson.get(helpers.apiUrl + '/Selections/MakeSelection/' + req.user.id + '/' + req.params.runnerid)
+		.then(handleSelection)
+		.catch(console.error);
+};
