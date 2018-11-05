@@ -8,20 +8,13 @@ block content
 		div.name !{data.RaceName}
 		div.time !{data.TimeToJump} min
 	each runner in data.Runners
-		if runner.RunnerID == selection
-			div.card.content-card.selected(id=runner.RunnerID, onclick="makeSelection('" + user.id + "', '" + runner.RunnerID + "')")
-				div.number !{runner.Number}
-				div.name !{runner.Name}
-				if runner.RunnerStatus == 'Scratched'
-					div.time Scratched
-				else
-					div.time !{runner.ProjectedWin}
-		else
-			div.card.content-card(id=runner.RunnerID, onclick="makeSelection('" + user.id + "', '" + runner.RunnerID + "')")
-				div.number !{runner.Number}
-				div.name !{runner.Name}
-				if runner.RunnerStatus == 'Scratched'
-					div.time Scratched
-				else
-					div.time !{runner.ProjectedWin}
+		- var closed = (runner.RunnerStatus == 'Scratched' ? 'closed' : '');
+		- var selected = (runner.RunnerID == selection ? 'selected' : '');
+		div.card.content-card(class=closed class=selected id=runner.RunnerID, onclick="makeSelection('" + user.id + "', '" + runner.RunnerID + "')")
+			div.number !{runner.Number}
+			div.name !{runner.Name}
+			if runner.RunnerStatus == 'Scratched'
+				div.time Scratched
+			else
+				div.time !{runner.ProjectedWin}
 	+raceNavigation(data.PreviousRace, data.NextRace)
