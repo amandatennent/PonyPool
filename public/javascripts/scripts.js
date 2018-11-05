@@ -10,11 +10,8 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 	}
 };
 
-function closeFlashMessage() {
-	document.getElementsByClassName('flash').remove();
-}
-
 function makeSelection(userID, runnerID) {
+	showMessage('info', 'Saving selection...');
 	var request = new XMLHttpRequest();
 	request.open('GET', 'http://localhost:5000/api/Selections/MakeSelection/' + userID + '/' + runnerID, true);
 	request.onload = function () {
@@ -28,55 +25,36 @@ function makeSelection(userID, runnerID) {
 
 			document.getElementById(runnerID).classList.add('selected');
 
-			showSuccessMessage();
+			showMessage('success', 'Selection was successful');
 		}
 		else
-			showErrorMessage();
+			showMessage('error', 'Selection was not successful');
 	};
 
 	request.send();
 }
 
-function showErrorMessage() {
+function showMessage(type, message) {
 	document.getElementById('message').outerHTML = '';
 
 	var element = document.getElementById('custom_flash');
 	element.classList.remove('flash--success');
-	element.classList.add('flash--error');
-	element.style.display = 'flex';
-
-	var node = document.createElement('p');
-	node.setAttribute('id', 'message');
-
-	var textnode = document.createTextNode('Selection was not successful');
-	node.appendChild(textnode);
-
-	document.getElementById('custom_flash').insertBefore(node, document.getElementById('custom_flash').firstChild);
-
-	setTimeout(function()
-	{
-		document.getElementById('custom_flash').style.display = 'none';
-	}, 5000);
-}
-
-function showSuccessMessage() {
-	document.getElementById('message').outerHTML = '';
-
-	var element = document.getElementById('custom_flash');
 	element.classList.remove('flash--error');
-	element.classList.add('flash--success');
+	element.classList.remove('flash--info');
 	element.style.display = 'flex';
+
+	if (type == 'error')
+		element.classList.add('flash--error');
+	else if(type == 'success')
+		element.classList.add('flash--success');
+	else
+		element.classList.add('flash--info');
 
 	var node = document.createElement('p');
 	node.setAttribute('id', 'message');
 
-	var textnode = document.createTextNode('Selection was successful');
+	var textnode = document.createTextNode(message);
 	node.appendChild(textnode);
 
 	document.getElementById('custom_flash').insertBefore(node, document.getElementById('custom_flash').firstChild);
-
-	setTimeout(function()
-	{
-		document.getElementById('custom_flash').style.display = 'none';
-	}, 5000);
 }
