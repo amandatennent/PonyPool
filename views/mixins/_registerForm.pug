@@ -1,10 +1,12 @@
 mixin registerForm()
+	- var name = (typeof body !== 'undefined' ? body.name : '');
+	- var email = (typeof body !== 'undefined' ? body.email : '');
 	form.form(action='/register' method='POST')
 		h2 Register
 		label(for="name") Name
-		input(type="text" name="name" )
+		input(type="text" name="name" value=`${name}`)
 		label(for="email") Email
-		input(type="email" name="email" )
+		input(type="email" name="email" value=`${email}`)
 		label(for="password") Password
 		input(type="password" name="password")
 		label(for="password-confirm") Confirm Password

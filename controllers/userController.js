@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const promsify = require('es6-promisify');
+const promisify = require('es6-promisify');
 const fetch = require('node-fetch');
 const helpers = require('../helpers');
 const fetchJson = require('fetch-json');
@@ -37,24 +37,32 @@ exports.validateRegister = (req, res, next) => {
 	next();
 };
 
-exports.register = async (req, res, next) => {
+exports.register = async(req, res, next) => {
 	const user = new User({ email: req.body.email, name: req.body.name });
-	const register = promsify(User.register, User);
-	await register(user, req.body.password);
-
-	// Add user to API
-	// FIXME: Unhandled promise rejection
-	var body = { name: user.name, paid: false, userId: user._id };
-	fetch(helpers.apiUrl + '/Users/PostUser', {
-		method: 'POST',
-		body:    JSON.stringify(body),
-		headers: {
-			'Content-Type': 'application/json',
-			'accept': 'application/json'
+	const register = promisify(User.register, User);
+	await register(user, req.body.password, function(error, user) {
+		if (error) {
+			var errorMessage = String(error);
+			req.flash('error', errorMessage.substring(errorMessage.indexOf(':') + 2));
+			res.render('register', { title: 'Register', body: req.body, flashes: req.flash() });
+			return;
+		}
+		else
+		{
+			// Add user to API
+			// FIXME: Unhandled promise rejection
+			var body = { name: user.name, paid: false, userId: user._id };
+			fetch(helpers.apiUrl + '/Users/PostUser', {
+				method: 'POST',
+				body:    JSON.stringify(body),
+				headers: {
+					'Content-Type': 'application/json',
+					'accept': 'application/json'
+				}
+			});
+			next();
 		}
 	});
-
-	next();
 };
 
 exports.account = (req, res) => {
