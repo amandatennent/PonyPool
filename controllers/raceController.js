@@ -40,8 +40,6 @@ exports.displayRacePage = async(req, res) => {
 };
 
 exports.selectRunner = async (req, res) => {
-	// res.send ('User = ' + req.user.id + ', Race = ' + req.params.raceid + ', Runner = ' + req.params.runnerid);
-
 	function handleSelection(data) {
 		data = JSON.parse(data);
 		try {
